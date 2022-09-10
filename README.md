@@ -17,6 +17,18 @@
 
 ## 설치
 
+```bash
+ $ npm i
 ```
 
+## 실행
+
+```bash
+ $ npm start
+```
+
+또는
+
+```bash
+ $ yarn start
 ```
