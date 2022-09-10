@@ -13,7 +13,7 @@ app.get('/save', function (req, res) {
 
   filename = `${req.query.mode}_${req.query.date}`;
   // console.log('filename', filename);
-  fs.writeFile(`./dang/${filename}.txt`, `${req.query.value}`, err => {
+  fs.writeFile(`./uploads/${filename}.txt`, `${req.query.value}`, err => {
     res.send({
       result: !err ? true : false,
     });
@@ -26,7 +26,7 @@ app.get('/load', function (req, res) {
   // -> 브라우저에 리소스에 접근하는 임의의 출처로부터 요청 코드를 허용함
   let filename = `${req.query.mode}_${req.query.date}`;
   // console.log('filename', filename);
-  fs.readFile(`./dang/${filename}.txt`, (err, _res) => {
+  fs.readFile(`./uploads/${filename}.txt`, (err, _res) => {
     if (err) {
       if (req.query.mode === 'text') {
         res.send({
@@ -73,13 +73,13 @@ app.get('/getdata', function (req, res) {
 
     data[`${req.query.date}_${i}`] = {};
 
-    fs.readFile(`./dang/${text}.txt`, (err, _res) => {
+    fs.readFile(`./uploads/${text}.txt`, (err, _res) => {
       // console.log(`${req.query.date}_${i}`);
       data[`${req.query.date}_${i}`].text = err ? '' : _res.toString();
       checkcomplete();
     });
 
-    fs.readFile(`./dang/${check}.txt`, (err, _res) => {
+    fs.readFile(`./uploads/${check}.txt`, (err, _res) => {
       data[`${req.query.date}_${i}`].check = err
         ? false
         : _res.toString() === 'true';
